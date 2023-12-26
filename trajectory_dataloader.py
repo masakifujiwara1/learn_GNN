@@ -216,7 +216,7 @@ class TrajectoryDataset(Dataset):
             self.A_pred.append(a_.clone())
         pbar.close()
 
-        print(self.v_obs[300], self.v_obs[300].shape)
+        # print(self.v_obs[300], self.v_obs[300].shape)
 
     def __len__(self):
         return self.num_seq
@@ -247,10 +247,22 @@ loader_train = DataLoader(
         shuffle =True,
         num_workers=0)
 
-print(len(loader_train))
+# print(len(loader_train))
 # print(loader_train[0])
-# for cnt, batch in enumerate(loader_train):
-#     print(batch)
+for cnt, batch in enumerate(loader_train):
+    obs_traj, pred_traj_gt, obs_traj_rel, pred_traj_gt_rel, non_linear_ped,\
+         loss_mask,V_obs,A_obs,V_tr,A_tr = batch
+    print("vobs", V_obs.shape)
+    print("vtr", V_tr.shape)
+    print("aobs", A_obs.shape)
+    print("atr", A_tr.shape)
+    print("obs_traj", obs_traj.shape)
+    print("obs_traj_rel", obs_traj_rel.shape)
+    print("pred_traj_gt", pred_traj_gt.shape)
+    print("pred_traj_gt_rel", pred_traj_gt_rel.shape)
+    print("non_linear_ped", non_linear_ped.shape, non_linear_ped)
+    print("loss_mask", loss_mask.shape, loss_mask)
+    break
 
 # out = dset_train.__getitem__
 
